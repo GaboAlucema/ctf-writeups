@@ -59,5 +59,5 @@ root
 ```
 Obteniendo permisos de Root con la vulnerabilidad explotada correctamente
 ## 4. 🚩 Banderas (Flags)
-- **User:** 
+- **User:** N/A
 - **Root**: 261fd3f32200f950f231816b4e9a0594

