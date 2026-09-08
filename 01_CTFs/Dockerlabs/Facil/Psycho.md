@@ -28,7 +28,8 @@ Debido a falta de pruebas procederemos a realizar un Fuzzing al objetivo:
 gobuster dir -u http://172.17.0.2 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 assets       (Status: 301) [Size: 309] [--> http://172.17.0.2/assets/]
 ```
-Revisamos la dirección en el navegador y nos lleva a un Index con una imagen `background.jpg` sospechoso. Procedemos a una revisión de la imagen:
+Revisamos la dirección en el navegador y nos lleva a un Index con una imagen `background.jpg` sospechoso. Procedemos a una revisión de la imagen, pero parece estar limpia.
+En el `html` del sitio principal parece haber un error de código dinamico
 
 ## 2. 🔓 Explotación (Foothold)
 *(¿Cómo logramos entrar? ¿Qué vulnerabilidad o script usamos?)*
