@@ -29,8 +29,15 @@ gobuster dir -u http://172.17.0.2 -w /usr/share/wordlists/dirbuster/directory-li
 assets       (Status: 301) [Size: 309] [--> http://172.17.0.2/assets/]
 ```
 Revisamos la dirección en el navegador y nos lleva a un Index con una imagen `background.jpg` sospechoso. Procedemos a una revisión de la imagen, pero parece estar limpia.
-En el `html` del sitio principal parece haber un error de código dinamico
-
+En el `html` del sitio principal parece haber un error de código dinamico, lo que nos da a entender que hay un parametro en el backend que está soltando un error `[!] ERROR [!] `.
+Probaremos hacer Fuzzing a un posible parametro oculto del .php:
+```bash
+ffuf -u http://172.17.0.2/index.php?FUZZ=test -w /usr/share/wordlists/dirb/common.txt -fs 2596    #2596 debido a que es el tamaño predeterminado de respuesta
+secret   [Status: 200, Size: 2582, Words: 671, Lines: 63, Duration: 0ms]
+```
+Encontramos un parametro que está esperando una variable, al probarlo directo en la url:
+`http://172.17.0.2/index.php?secret=test`
+Notamos que no vuelve a saltar el error, dando por hecho que hay un posible LFI
 ## 2. 🔓 Explotación (Foothold)
 *(¿Cómo logramos entrar? ¿Qué vulnerabilidad o script usamos?)*
 
