@@ -22,7 +22,14 @@ PORT   STATE SERVICE VERSION
 MAC Address: 5A:7A:3D:EF:5B:66 (Unknown)
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
-Los servicios no parecen tener vulnerabilidades conocidas, procedemos a la inspección visual del http cargado en apache.
+Los servicios no parecen tener vulnerabilidades conocidas, procedemos a la inspección visual del http cargado en apache. Parece haber un nombre que se repite 'Luisillo'.
+Debido a falta de pruebas procederemos a realizar un Fuzzing al objetivo:
+```bash
+gobuster dir -u http://172.17.0.2 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+assets       (Status: 301) [Size: 309] [--> http://172.17.0.2/assets/]
+```
+Revisamos la dirección en el navegador y nos lleva a un Index con una imagen `background.jpg` sospechoso. Procedemos a una revisión de la imagen:
+
 ## 2. 🔓 Explotación (Foothold)
 *(¿Cómo logramos entrar? ¿Qué vulnerabilidad o script usamos?)*
 
