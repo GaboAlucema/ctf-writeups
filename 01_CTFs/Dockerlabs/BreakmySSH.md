@@ -22,7 +22,18 @@ MAC Address: 8A:61:F3:B1:74:40 (Unknown)
 Solo puerto 22 abierto, con OpenSSH vulnerable a Username Enumeration
 
 ## 2. 🔓 Explotación (Foothold)
-Copiamos el script encontrado para la versión vulnerable
+Copiamos el script encontrado para la versión vulnerable:
+```bash
+cp /usr/share/exploitdb/exploits/linux/remote/45233.py .
+```
+```bash
+ls
+45233.py
+```
+```bash
+ cat 45233.py
+# Exploit: OpenSSH 7.7 - Username Enumeration
+```
 
 
 ## 3. 🚀 Escalada de Privilegios
