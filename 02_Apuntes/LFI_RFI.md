@@ -1,10 +1,10 @@
-# 📂 Inclusión de Archivos (LFI & RFI)
+# Inclusión de Archivos (LFI & RFI)
 
 **Definición:** Vulnerabilidad web que permite al atacante controlar dinámicamente qué archivo carga, lee o ejecuta el servidor. Es sumamente común en aplicaciones PHP mal programadas que usan funciones como `include()`, `require()`, o `file_get_contents()`.
 
 ---
 
-## 🏠 1. Local File Inclusion (LFI)
+## 1. Local File Inclusion (LFI)
 El servidor lee o ejecuta archivos *locales* (que ya existen en la máquina víctima).
 
 ### Vector Básico (Path Traversal)
@@ -12,7 +12,7 @@ Se abusa de los saltos de directorio (`../`) para retroceder a la raíz (`/`) y 
 * **Linux:** `?page=../../../../../../etc/passwd`
 * **Windows:** `?page=../../../../../../windows/win.ini` o `boot.ini`
 
-### 🛡️ Evasión de Filtros (Bypasses comunes en CTFs)
+### Evasión de Filtros (Bypasses comunes en CTFs)
 Si el servidor bloquea el `../` clásico o le añade extensiones forzadas (ej. `.php`), prueba esto:
 1. **Null Byte (`%00`):** Engaña a versiones antiguas de PHP para que ignoren cualquier extensión que el servidor intente añadir al final.
    `?page=../../../../../../etc/passwd%00`
