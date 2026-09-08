@@ -19,9 +19,12 @@ PORT   STATE SERVICE VERSION
 |_  256 4b:15:7e:7b:b3:07:54:3d:74:ad:e0:94:78:0c:94:93 (ED25519)
 MAC Address: 8A:61:F3:B1:74:40 (Unknown)
 ```
-Solo puerto 22 abierto, con OpenSSH vulnerable a Username Enumeration
+Solo puerto 22 abierto, con OpenSSH 7.7
 
 ## 2. 🔓 Explotación (Foothold)
+Buscamos la posible vulnerabilidad asociada al servicio en el puerto 22.
+```
+```
 Copiamos el script encontrado para la versión vulnerable:
 ```bash
 searchsploit -m 45233 #no funcionó, pasamos al comando manual:
@@ -32,11 +35,29 @@ ls
 45233.py
 ```
 ```bash
- cat 45233.py
+cat 45233.py
 # Exploit: OpenSSH 7.7 - Username Enumeration
+
+#Lo ejecutamos
+python3 45233.py
+Traceback (most recent call last):
+  File "/home/kali/Documents/Workspace/Dockerlabs/BreakmySSH/45233.py", line 30, in <module>
+    old_parse_service_accept = paramiko.auth_handler.AuthHandler._handler_table[paramiko.common.MSG_SERVICE_ACCEPT]
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'property' object is not subscriptable
 ```
-
-
+Obtenemos un error, lo que indica que el script puede ya estar parcheado. Probamos con otro script:
+```bash
+python3 45939.py
+Traceback (most recent call last):
+  File "/home/kali/Documents/Workspace/Dockerlabs/BreakmySSH/45939.py", line 16, in <module>
+    old_service_accept = paramiko.auth_handler.AuthHandler._client_handler_table[
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+            paramiko.common.MSG_SERVICE_ACCEPT]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'property' object is not subscriptable
+```
+Pero llegamos al mismo error. Buscamos otra opción, 
 ## 3. 🚀 Escalada de Privilegios
 *(¿Cómo pasamos de ser un usuario normal a ser Administrador o Root?)*
 
