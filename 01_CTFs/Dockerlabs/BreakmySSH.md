@@ -24,6 +24,7 @@ Solo puerto 22 abierto, con OpenSSH vulnerable a Username Enumeration
 ## 2. 🔓 Explotación (Foothold)
 Copiamos el script encontrado para la versión vulnerable:
 ```bash
+searchsploit -m 45233 #no funcionó, pasamos al comando manual:
 cp /usr/share/exploitdb/exploits/linux/remote/45233.py .
 ```
 ```bash
