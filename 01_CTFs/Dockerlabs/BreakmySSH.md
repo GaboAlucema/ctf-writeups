@@ -19,11 +19,15 @@ PORT   STATE SERVICE VERSION
 |_  256 4b:15:7e:7b:b3:07:54:3d:74:ad:e0:94:78:0c:94:93 (ED25519)
 MAC Address: 8A:61:F3:B1:74:40 (Unknown)
 ```
-Solo puerto 22 abierto, con OpenSSH 7.7
+Solo puerto 22 abierto, con OpenSSH 7.7.
 
 ## 2. 🔓 Explotación (Foothold)
 Buscamos la posible vulnerabilidad asociada al servicio en el puerto 22.
-```
+```bash
+searchsploit OpenSSH 7.7
+OpenSSH 2.3 < 7.7 - Username Enumeration       |  linux/remote/45233.py
+OpenSSH 2.3 < 7.7 - Username Enumeration (PoC) |  linux/remote/45210.py
+OpenSSH < 7.7 - User Enumeration (2)           |  linux/remote/45939.py
 ```
 Copiamos el script encontrado para la versión vulnerable:
 ```bash
@@ -57,7 +61,11 @@ Traceback (most recent call last):
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: 'property' object is not subscriptable
 ```
-Pero llegamos al mismo error. Buscamos otra opción, 
+Pero llegamos al mismo error. Buscamos otra opción, sabiendo que tiene una versión vulnerable a enumeración de usuarios, probamos con `Metasploit Framework`.
+```bash
+msf > search CVE-2018-15473
+ 0  auxiliary/scanner/ssh/ssh_enumusers SSH Username Enumeration
+```
 ## 3. 🚀 Escalada de Privilegios
 *(¿Cómo pasamos de ser un usuario normal a ser Administrador o Root?)*
 
