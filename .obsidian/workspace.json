@@ -36,7 +36,7 @@
               "type": "markdown",
               "state": {
                 "file": "02_Apuntes/Fuerza Bruta Activa.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -211,10 +211,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e5b9f0ef1e42257c",
+  "active": "23b3857dc2e1f83a",
   "lastOpenFiles": [
-    "02_Apuntes/Fuerza Bruta Activa.md",
     "01_CTFs/Dockerlabs/Facil/Psycho.md",
+    "02_Apuntes/Fuerza Bruta Activa.md",
     "conflict-files-obsidian-git.md",
     "02_Apuntes/LFI_RFI.md",
     "02_Apuntes/Metasplot y Searchsploit.md",

