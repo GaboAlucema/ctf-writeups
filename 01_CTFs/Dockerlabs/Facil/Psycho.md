@@ -128,8 +128,20 @@ Last login: Sat Aug 10 02:25:09 2024 from 172.17.0.1
 vaxei@b60671bc6147:~$
 ```
 Obteniendo acceso al usuario vaxei.
+Revisamos los comandos con permiso sudo del usuario:
+```bash
+sudo -l
+Matching Defaults entries for vaxei on b60671bc6147:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin,
+    use_pty
 
+User vaxei may run the following commands on b60671bc6147:
+    (luisillo) NOPASSWD: /usr/bin/perl
+```
+Encontramos que vaxei puede correr el binario perl con el usuario de luisillo para la escalada Horizontal. Aprovechamos esta brecha:
+```bash
 
+```
 
 ## 3. 🚀 Escalada de Privilegios
 *(¿Cómo pasamos de ser un usuario normal a ser Administrador o Root?)*
