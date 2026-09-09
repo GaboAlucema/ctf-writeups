@@ -157,7 +157,7 @@ Matching Defaults entries for luisillo on b60671bc6147:
 User luisillo may run the following commands on b60671bc6147:
     (ALL) NOPASSWD: /usr/bin/python3 /opt/paw.py
 ```
-Pudiendo ejecutar un archivo `.py` con python3 y permisos root sin contraseña.
+Pudiendo ejecutar un archivo `.py` con python3 y permisos root sin contraseña. probam
 
 ## 3. 🚀 Escalada de Privilegios
 *(¿Cómo pasamos de ser un usuario normal a ser Administrador o Root?)*
