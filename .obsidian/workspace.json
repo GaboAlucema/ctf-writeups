@@ -6,31 +6,10 @@
       {
         "id": "4165bdffeda6d81c",
         "type": "tabs",
-        "dimension": 61.84,
+        "dimension": 56.52173913043478,
         "children": [
           {
             "id": "e5b9f0ef1e42257c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "01_CTFs/Dockerlabs/Facil/Psycho.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Psycho"
-            }
-          }
-        ]
-      },
-      {
-        "id": "efe8286c1352746f",
-        "type": "tabs",
-        "dimension": 38.16,
-        "children": [
-          {
-            "id": "23b3857dc2e1f83a",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -42,9 +21,44 @@
               "icon": "lucide-file",
               "title": "Fuerza Bruta Activa"
             }
+          }
+        ]
+      },
+      {
+        "id": "efe8286c1352746f",
+        "type": "tabs",
+        "dimension": 43.47826086956522,
+        "children": [
+          {
+            "id": "23b3857dc2e1f83a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "02_Apuntes/Metasplot y Searchsploit.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Metasplot y Searchsploit"
+            }
           },
           {
-            "id": "dddfef8bd73303ee",
+            "id": "afa84baf79b4d30c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "02_Apuntes/Fuzzing de Directorios Web.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Fuzzing de Directorios Web"
+            }
+          },
+          {
+            "id": "b275742fa8f8dbcf",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -56,9 +70,23 @@
               "icon": "lucide-file",
               "title": "LFI_RFI"
             }
+          },
+          {
+            "id": "67b8a20770971533",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "02_Apuntes/Fuerza Bruta Activa.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Fuerza Bruta Activa"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -226,26 +254,25 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "dddfef8bd73303ee",
+  "active": "e5b9f0ef1e42257c",
   "lastOpenFiles": [
     "01_CTFs/Dockerlabs/Facil/Psycho.md",
     "02_Apuntes/Fuerza Bruta Activa.md",
-    "conflict-files-obsidian-git.md",
     "02_Apuntes/LFI_RFI.md",
+    "02_Apuntes/Fuzzing de Directorios Web.md",
     "02_Apuntes/Metasplot y Searchsploit.md",
-    "README.md",
     "01_CTFs/Dockerlabs/BreakmySSH.md",
+    "01_CTFs/Dockerlabs/Facil",
     "01_CTFs/Dockerlabs/MuyFacil/TPRoot.md",
     "01_CTFs/Dockerlabs/MuyFacil/Obsession.md",
     "01_CTFs/Dockerlabs/MuyFacil/BreakmySSH.md",
     "01_CTFs/Dockerlabs/MuyFacil/BorazuwarahCTF.md",
     "01_CTFs/Dockerlabs/MuyFacil",
-    "01_CTFs/Dockerlabs/Facil",
     "01_CTFs/Dockerlabs/BorazuwarahCTF.md",
     "01_CTFs/Dockerlabs/Obsession.md",
     "01_CTFs/Dockerlabs/TPRoot.md",
+    "README.md",
     "LICENSE",
-    "02_Apuntes/Fuzzing de Directorios Web.md",
     "01_CTFs/HTB/Incompletos/Orion.md",
     "01_CTFs/Dockerlabs",
     "01_CTFs/HTB/Incompletos",
