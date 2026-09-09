@@ -15,7 +15,7 @@
               "type": "markdown",
               "state": {
                 "file": "01_CTFs/Dockerlabs/Facil/Psycho.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -213,8 +213,9 @@
   },
   "active": "e5b9f0ef1e42257c",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
+    "02_Apuntes/Fuerza Bruta Activa.md",
     "01_CTFs/Dockerlabs/Facil/Psycho.md",
+    "conflict-files-obsidian-git.md",
     "02_Apuntes/LFI_RFI.md",
     "02_Apuntes/Metasplot y Searchsploit.md",
     "README.md",
@@ -225,7 +226,6 @@
     "01_CTFs/Dockerlabs/MuyFacil/BorazuwarahCTF.md",
     "01_CTFs/Dockerlabs/MuyFacil",
     "01_CTFs/Dockerlabs/Facil",
-    "02_Apuntes/Fuerza Bruta Activa.md",
     "01_CTFs/Dockerlabs/BorazuwarahCTF.md",
     "01_CTFs/Dockerlabs/Obsession.md",
     "01_CTFs/Dockerlabs/TPRoot.md",
