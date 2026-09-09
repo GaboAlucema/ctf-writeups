@@ -103,3 +103,40 @@ Si ya sabes que el parámetro es `?page=`, pero no sabes qué archivos existen, 
 * **Comando:** `ffuf -c -w /usr/share/seclists/Fuzzing/LFI/LFI-gracefulsecurity-linux.txt -u "http://10.10.10.X/index.php?page=FUZZ" -fs [TAMAÑO_ERROR]` 
 
 *(Nota: Al hacer fuzzing de parámetros en URLs complejas, es buena práctica encerrar la URL entre comillas dobles `""` en la terminal).*
+
+## 5. Bonus: Wfuzz (La Navaja Suiza del Fuzzing)
+
+Alternativa clásica a FFUF. Es ligeramente más lento, pero extremadamente versátil para manipular diccionarios al vuelo y atacar múltiples variables a la vez.
+
+### FFUF vs Wfuzz (Comparativa Rápida)
+
+| Característica | FFUF | Wfuzz |
+| :--- | :--- | :--- |
+| **Tecnología** | Golang (Ultrarrápido) | Python (Versátil) |
+| **Palabra Clave** | `FUZZ` | `FUZZ`, `FUZ2Z`, `FUZ3Z` |
+| **Uso Ideal** | Directorios, VHosts, fuerza bruta masiva | Parámetros complejos, APIs, codificación en vivo |
+
+### Comandos Esenciales de Wfuzz
+
+La lógica es similar, pero en Wfuzz el diccionario se indica con `-z file,ruta` y la URL siempre va al final.
+
+* **Escaneo Básico (Directorios):**
+  `wfuzz -c -z file,/usr/share/wordlists/dirb/common.txt http://10.10.10.X/FUZZ`
+* **Inyección Múltiple (Atacar dos variables a la vez):**
+  *(Ej. adivinar nombre de usuario y directorio al mismo tiempo).*
+  `wfuzz -c -z file,usuarios.txt -z file,directorios.txt http://10.10.10.X/FUZZ/FUZ2Z`
+* **Fuzzing de Parámetros (POST):**
+  `wfuzz -c -z file,parametros.txt -d "FUZZ=test" http://10.10.10.X/api.php`
+* **Magia de Encodings (Codificación al vuelo):**
+  *(Convierte automáticamente las palabras del diccionario a base64 al atacar).*
+  `wfuzz -c -z file,diccionario.txt,base64 http://10.10.10.X/index.php?page=FUZZ`
+
+### Filtrado de Basura en Wfuzz
+En lugar de `-f` (Filter) como en FFUF, Wfuzz utiliza `--h` (Hide) o `--s` (Show).
+
+* **Ocultar por Códigos HTTP (`--hc`):**
+  `... --hc 404,403`
+* **Ocultar por cantidad de Palabras (`--hw`):**
+  `... --hw 250`
+* **Ocultar por Líneas de código (`--hl`):**
+  `... --hl 35`
