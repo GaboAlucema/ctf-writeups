@@ -86,7 +86,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -255,12 +255,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e5b9f0ef1e42257c",
+  "active": "afa84baf79b4d30c",
   "lastOpenFiles": [
-    "02_Apuntes/Fuerza Bruta Activa.md",
     "02_Apuntes/LFI_RFI.md",
-    "01_CTFs/Dockerlabs/Facil/Psycho.md",
     "02_Apuntes/Fuzzing de Directorios Web.md",
+    "01_CTFs/Dockerlabs/Facil/Psycho.md",
+    "02_Apuntes/Fuerza Bruta Activa.md",
     "02_Apuntes/Metasplot y Searchsploit.md",
     "01_CTFs/Dockerlabs/BreakmySSH.md",
     "01_CTFs/Dockerlabs/Facil",
