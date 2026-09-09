@@ -47,8 +47,8 @@ Encontrando los nombres de usuario: `luisillo | vaxei`, por lo que creamos un ar
 
 ```bash
 hydra -L users.txt -P /usr/share/wordlists/rockyou.txt ssh://172.17.0.2
-
 ```
+Luego de un rato esperando no tuvimos éxito. Sabemos que tenemos [[]]
 ## 2. 🔓 Explotación (Foothold)
 *(¿Cómo logramos entrar? ¿Qué vulnerabilidad o script usamos?)*
 
