@@ -157,7 +157,83 @@ Matching Defaults entries for luisillo on b60671bc6147:
 User luisillo may run the following commands on b60671bc6147:
     (ALL) NOPASSWD: /usr/bin/python3 /opt/paw.py
 ```
-Pudiendo ejecutar un archivo `.py` con python3 y permisos root sin contraseña. probam
+Pudiendo ejecutar un archivo `.py` con python3 y permisos root sin contraseña. Revisamos primero los permisos configurados en el archivo:
+```bash
+ls -lah /opt/paw.py
+-rw-r--r-- 1 root root 967 Aug 10  2024 /opt/paw.py
+```
+Nuestro usuario tiene los siguientes atributos:
+```bash
+id
+uid=1002(luisillo) gid=1002(luisillo) groups=1002(luisillo)
+```
+Por lo que no tenemos permisos para editar directamente el archivo con nano.
+Probamos la ejecución en frio para ver el comportamiento del archivo:
+```bash
+sudo python3 /opt/paw.py
+Ojo Aqui
+Processed data: tHIS IS SOME DUMMY DATA THAT NEEDS TO BE PROCESSED.
+Useless calculation result: 499999500000
+Traceback (most recent call last):
+  File "/opt/paw.py", line 41, in <module>
+    main()
+  File "/opt/paw.py", line 38, in main
+    run_command()
+  File "/opt/paw.py", line 30, in run_command
+    subprocess.run(['echo Hello!'], check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'echo Hello!'
+```
+Al revisar el contenido nos encontramos con que tiene librerías de python importadas de las cuales nos podemos aprovechar:
+```python
+import subprocess
+import os
+import sys
+import time
+
+# F
+def dummy_function(data):
+    result = ""
+    for char in data:
+        result += char.upper() if char.islower() else char.lower()
+    return result
+
+# Código para ejecutar el script
+os.system("echo Ojo Aqui")
+
+# Simulación de procesamiento de datos
+def data_processing():
+    data = "This is some dummy data that needs to be processed."
+    processed_data = dummy_function(data)
+    print(f"Processed data: {processed_data}")
+
+# Simulación de un cálculo inútil
+def perform_useless_calculation():
+    result = 0
+    for i in range(1000000):
+        result += i
+    print(f"Useless calculation result: {result}")
+
+def run_command():
+    subprocess.run(['echo Hello!'], check=True)
+
+def main():
+    # Llamadas a funciones que no afectan el resultado final
+    data_processing()
+    perform_useless_calculation()
+
+    # Comando real que se ejecuta
+    run_command()
+
+if __name__ == "__main__":
+    main()
+```
 
 ## 3. 🚀 Escalada de Privilegios
 *(¿Cómo pasamos de ser un usuario normal a ser Administrador o Root?)*

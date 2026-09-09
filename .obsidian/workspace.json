@@ -144,8 +144,7 @@
               "title": "Marcadores"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -235,13 +234,23 @@
               "icon": "lucide-list",
               "title": "Esquema"
             }
+          },
+          {
+            "id": "490e3495e415cd7b",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -255,7 +264,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e5b9f0ef1e42257c",
+  "active": "7427301f340a6748",
   "lastOpenFiles": [
     "02_Apuntes/LFI_RFI.md",
     "01_CTFs/Dockerlabs/Facil/Psycho.md",
