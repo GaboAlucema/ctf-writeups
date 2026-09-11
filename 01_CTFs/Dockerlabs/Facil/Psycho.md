@@ -190,7 +190,7 @@ Traceback (most recent call last):
     raise child_exception_type(errno_num, err_msg, err_filename)
 FileNotFoundError: [Errno 2] No such file or directory: 'echo Hello!'
 ```
-Al revisar el contenido nos encontramos con que tiene librerías de python importadas de las cuales nos podemos aprovechar:
+Al revisar el contenido nos encontramos con que tiene librerías de python importadas de las cuales nos podemos aprovechar (os, subprocess, sys):
 ```python
 import subprocess
 import os
@@ -234,7 +234,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
+Ya vimos que el error en sí viene de la llamada de la funcion 
 ## 3. 🚀 Escalada de Privilegios
 *(¿Cómo pasamos de ser un usuario normal a ser Administrador o Root?)*
 
