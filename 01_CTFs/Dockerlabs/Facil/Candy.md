@@ -19,7 +19,7 @@ PORT   STATE SERVICE VERSION
 MAC Address: 5A:9E:4B:9B:20:1C (Unknown)
 ```
 Puerto 80: Servidor web Apache/2.4.58 (Ubuntu) corriendo el CMS Joomla. El archivo robots.txt revela el panel de login en /administrator/ y una ruta anómala interesante: `/un_caramelo`
-Al revisar la página encontramos el siguiente html:
+Al revisar la página `un_caramelo` encontramos el siguiente html:
 ```html
 <html lang="es"><head>
     <meta charset="UTF-8">
@@ -89,11 +89,7 @@ Al revisar la página encontramos el siguiente html:
 
 </body></html>
 ```
-Encontramos las credenciales de **admin** comentadas. Al revisar la página principal, vemos un portal de login. Probamos las credenciales pero no son correctas. Nos dimos cuenta que el link puede tener LFI:
-```url
-http://172.17.0.2/index.php/component/users/login?Itemid=101
-```
-Pero luego de estar probando distintas configuraciónes con `ffuf` no logramos comprometer la url. 
+Encontramos las credenciales de **admin** comentadas. Al revisar la página principal, vemos un portal de login. Probamos las credenciales pero no son correctas. En la enumeración, nmap encontró una ruta `/administrator/` el cuál también tiene un login, probamos las credenciales, sin éxito. Sabemos que el sitio esta corriendo en Joola,
 ## 2. 🔓 Explotación (Foothold)
 *(¿Cómo logramos entrar? ¿Qué vulnerabilidad o script usamos?)*
 
