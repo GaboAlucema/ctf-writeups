@@ -246,7 +246,7 @@ sudo python3 /opt/paw.py
 root@dockerlabs:/home/luisillo# whoami
 root
 ```
-
+Y obtenemos el usuario root desde la sesión de luisillo y haciendo un salto horizontal.
 
 ## 4. 🚩 Banderas (Flags)
 - **User:** 

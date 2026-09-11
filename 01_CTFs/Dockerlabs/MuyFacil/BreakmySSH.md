@@ -117,6 +117,7 @@ permitted by applicable law.
 root@dockerlabs:~# whoami
 root
 ```
+Obteniendo el usuario root. 
 ## 4. 🚩 Banderas (Flags)
 - **User:** 
 - **Root**: 
