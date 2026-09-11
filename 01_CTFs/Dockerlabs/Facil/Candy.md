@@ -89,7 +89,11 @@ Al revisar la página encontramos el siguiente html:
 
 </body></html>
 ```
-Encontramos las credenciales de **admin** comentadas. 
+Encontramos las credenciales de **admin** comentadas. Al revisar la página principal, vemos un portal de login. Probamos las credenciales pero no son correctas. Nos dimos cuenta que el link puede tener LFI:
+```url
+http://172.17.0.2/index.php/component/users/login?Itemid=101
+```
+Pero luego de estar probando distintas confi
 ## 2. 🔓 Explotación (Foothold)
 *(¿Cómo logramos entrar? ¿Qué vulnerabilidad o script usamos?)*
 
