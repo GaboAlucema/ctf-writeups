@@ -72,7 +72,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -240,10 +240,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c675aa9b1ec9cbcc",
+  "active": "e5b9f0ef1e42257c",
   "lastOpenFiles": [
-    "02_Apuntes/Fuerza Bruta Activa.md",
     "02_Apuntes/LFI_RFI.md",
+    "02_Apuntes/Fuzzing de Directorios Web.md",
+    "02_Apuntes/Fuerza Bruta Activa.md",
     "01_CTFs/Dockerlabs/Facil/Candy.md",
     "01_CTFs/HTB/Incompletos/Orion.md",
     "01_CTFs/Dockerlabs/MuyFacil/TPRoot.md",
@@ -261,7 +262,6 @@
     "01_CTFs/Dockerlabs/Obsession.md",
     "01_CTFs/Dockerlabs/TPRoot.md",
     "LICENSE",
-    "02_Apuntes/Fuzzing de Directorios Web.md",
     "01_CTFs/Dockerlabs",
     "01_CTFs/HTB/Incompletos",
     "03_Plantillas/Plantilla_CTF.md",

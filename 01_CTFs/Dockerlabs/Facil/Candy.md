@@ -93,7 +93,7 @@ Encontramos las credenciales de **admin** comentadas. Al revisar la página prin
 ```url
 http://172.17.0.2/index.php/component/users/login?Itemid=101
 ```
-Pero luego de estar probando distintas confi
+Pero luego de estar probando distintas configuraciónes con `ffuf` no logramos comprometer la url. 
 ## 2. 🔓 Explotación (Foothold)
 *(¿Cómo logramos entrar? ¿Qué vulnerabilidad o script usamos?)*
 
