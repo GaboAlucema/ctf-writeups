@@ -1,7 +1,7 @@
 # 🎯 Máquina: Candy
 **IP:** 
-**OS:** 
-**Dificultad:** 
+**OS:** Linux (Docker)
+**Dificultad:** Facil
 
 ---
 ## 1. 🔍 Enumeración
