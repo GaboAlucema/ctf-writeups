@@ -1,5 +1,5 @@
 # 🎯 Máquina: Candy
-**IP:** 
+**IP:** 172.17.0.2
 **OS:** Linux (Docker)
 **Dificultad:** Facil
 
